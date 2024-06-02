@@ -1,7 +1,9 @@
 package com.evansdev.jpa;
 
 import com.evansdev.jpa.models.Author;
+import com.evansdev.jpa.models.Video;
 import com.evansdev.jpa.repositories.AuthorRepository;
+import com.evansdev.jpa.repositories.VideoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,9 +18,13 @@ public class JpaApplication {
 		SpringApplication.run(JpaApplication.class, args);
 	}
 
-	// @Bean
-	public CommandLineRunner commandLineRunner(AuthorRepository authorRepository) {
+	@Bean
+	public CommandLineRunner commandLineRunner(
+			AuthorRepository authorRepository,
+			VideoRepository videoRepository
+	) {
 		return args -> {
+			/*
 			var author = Author.builder()
 					.firstName("John")
 					.lastName("Doe")
@@ -28,6 +34,12 @@ public class JpaApplication {
 					.build();
 
 			authorRepository.save(author);
+			 */
+			var video = Video.builder()
+					.name("Video#1")
+					.length(15)
+					.build();
+			videoRepository.save(video);
 		};
 	}
 
